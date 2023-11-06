@@ -5,9 +5,9 @@ use actix_web::{middleware, web, web::Data, App, HttpServer};
 use dotenv::dotenv;
 
 use ::lib::config::get as config_get;
+use ::lib::graphql::schema::create_schema;
 use ::lib::handlers::graphql::{graphql, playground};
 use ::lib::models::key::Key;
-use ::lib::schema_graphql::create_schema;
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {

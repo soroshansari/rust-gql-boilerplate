@@ -6,9 +6,9 @@ use actix_web::{web, Error, HttpRequest, HttpResponse};
 use juniper::http::{playground::playground_source, GraphQLRequest};
 use juniper::serde::ser::Error as SerdeError;
 
+use crate::graphql::schema::{create_context, SchemaGraphQL};
 use crate::models::errors::GraphQLErrors;
 use crate::models::key::Key;
-use crate::schema_graphql::{create_context, SchemaGraphQL};
 
 pub async fn playground() -> HttpResponse {
     let html = playground_source("/graphql", None);

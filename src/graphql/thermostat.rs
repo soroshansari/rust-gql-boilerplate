@@ -1,17 +1,13 @@
-use juniper::{graphql_object, RootNode};
-use juniper::{EmptySubscription, FieldResult};
+use juniper::graphql_object;
+use juniper::FieldResult;
 
+use crate::graphql::schema::Context;
 use crate::models::thermostat_status::*;
 
-#[derive(Clone)]
-pub struct Context {}
-
-impl juniper::Context for Context {}
-
-pub struct QueryRoot;
+pub struct ThermostatQuery;
 
 #[graphql_object(context = Context)]
-impl QueryRoot {
+impl ThermostatQuery {
     #[graphql(description = "Query the current (latest) thermostat status")]
     fn thermostat_status() -> FieldResult<ThermostatStatus> {
         let result = ThermostatStatus::get_latest()?;
@@ -25,10 +21,10 @@ impl QueryRoot {
     }
 }
 
-pub struct MutationRoot;
+pub struct ThermostatMutation;
 
 #[graphql_object(context = Context)]
-impl MutationRoot {
+impl ThermostatMutation {
     #[graphql(description = "Set the thermostat status")]
     fn set_thermostat_status(data: NewThermostatStatus) -> FieldResult<ThermostatStatus> {
         ThermostatStatus::insert(data)?;
@@ -36,14 +32,4 @@ impl MutationRoot {
         let result = ThermostatStatus::get_latest()?;
         Ok(result)
     }
-}
-
-pub type SchemaGraphQL = RootNode<'static, QueryRoot, MutationRoot, EmptySubscription<Context>>;
-
-pub fn create_schema() -> SchemaGraphQL {
-    SchemaGraphQL::new(QueryRoot {}, MutationRoot {}, EmptySubscription::new())
-}
-
-pub fn create_context() -> Context {
-    Context {}
 }
