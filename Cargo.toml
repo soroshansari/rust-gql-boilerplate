@@ -1,0 +1,43 @@
+[package]
+name = "rust-gql-boilerplate"
+version = "0.1.0"
+authors = ["Soroosh Ansarimher <sorosh.ansari@gmail.com>"]
+edition = "2021"
+
+[lib]
+name = "lib"
+path = "src/lib.rs"
+
+[dependencies]
+# misc
+futures = "0.3.17"
+dotenv = "0.15.0"
+chrono = { version = "0.4.31", features = ["serde"] }
+
+# web server
+actix-web = "4.4.0"
+actix-rt = "^2.6"
+actix-cors = "0.6.4"
+env_logger = "0.10.0"
+
+# database
+diesel = { version = "2.1.3", features = [
+    "postgres",
+    "r2d2",
+    "chrono",
+    "uuid",
+    "serde_json",
+] }
+
+# graphql
+juniper = "0.15.11"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0.108"
+r2d2 = "0.8.10"
+once_cell = "1.18.0"
+config = "0.13.3"
+
+[dev-dependencies]
+actix-http = "3.4.0"
+serial_test = "*"
