@@ -1,8 +1,8 @@
 use juniper::graphql_object;
 use juniper::FieldResult;
 
-use crate::graphql::schema::Context;
 use crate::models::thermostat_status::*;
+use crate::schema_graphql::Context;
 
 pub struct ThermostatQuery;
 

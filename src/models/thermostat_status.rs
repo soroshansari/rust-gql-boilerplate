@@ -9,7 +9,7 @@ use crate::{db::get_connection, schema::thermostat_status};
 #[graphql(description = "Thermostat status")]
 pub struct ThermostatStatus {
     id: i32,
-    status: bool,
+    pub status: bool,
     timestamp: NaiveDateTime,
 }
 

@@ -1,8 +1,8 @@
 use juniper::EmptySubscription;
 use juniper::{graphql_object, RootNode};
 
-use crate::graphql::thermostat::ThermostatMutation;
-use crate::graphql::thermostat::ThermostatQuery;
+use crate::resolvers::thermostat::ThermostatMutation;
+use crate::resolvers::thermostat::ThermostatQuery;
 
 #[derive(Clone)]
 pub struct Context {}
